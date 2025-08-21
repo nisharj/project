@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
-    <div className="text-center d-flex flex-column justify-content-center align-items-center" style={{ minHeight: '80vh', backgroundColor: '#f5f7fa' }}>
+    <div className="text-center d-flex flex-column justify-content-center align-items-center " style={{ minHeight: '100vh', backgroundColor: '#f5f7fa' }}>
       <h1 className="fw-bold mb-3" style={{ color: '#2c3e50' }}>
         Welcome to the Health Coach Application
       </h1>
