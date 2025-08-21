@@ -17,7 +17,7 @@ export default function DisplayHealthCoach() {
 
   return (
     <div className="mt-4">
-      {/* Centered styled heading */}
+     
       <h2 className="text-center text-primary mb-4">
         Submitted Health Coach Applications
       </h2>
@@ -25,7 +25,7 @@ export default function DisplayHealthCoach() {
       {loading ? (
         <div className="text-center">Loading...</div>
       ) : (
-        // Container gives spacing left & right
+       
         <div className="container">
           <div className="table-responsive">
             <table className="table table-bordered shadow-sm">
@@ -52,7 +52,6 @@ export default function DisplayHealthCoach() {
             </table>
           </div>
 
-          {/* Empty state message */}
           {coaches.length === 0 && (
             <div className="alert alert-info text-center">
               No applications yet.

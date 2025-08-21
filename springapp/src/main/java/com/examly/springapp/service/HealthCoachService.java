@@ -8,20 +8,21 @@ import java.util.List;
 
 @Service
 public class HealthCoachService {
-    private final HealthCoachRepo repo;
 
-    public HealthCoachService(HealthCoachRepo repo) {
-        this.repo = repo;
+    private final HealthCoachRepo coachRepo;
+
+    public HealthCoachService(HealthCoachRepo coachRepo) {
+        this.coachRepo = coachRepo;
     }
 
     public HealthCoach addCoach(HealthCoach coach) {
         if (coach.getExperience() < 0) {
-            throw new InvalidExperienceException("Experience cannot be negative");
+            throw new InvalidExperienceException("Experience cannot be negative.");
         }
-        return repo.save(coach);
+        return coachRepo.save(coach);
     }
 
     public List<HealthCoach> getAllCoaches() {
-        return repo.findAll();
+        return coachRepo.findAll();
     }
 }
