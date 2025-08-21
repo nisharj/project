@@ -6,12 +6,12 @@ export default function DisplayHealthCoach() {
 
   useEffect(() => {
     fetch('http://localhost:8080/getAllCoaches', {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
+      method:"GET", 
+      headers: {"Content-Type": "application/json"},
     })
       .then(res => res.json())
       .then(data => setCoaches(data))
-      .catch((error) => console.error(error))
+      .catch(() => setCoaches([]))
       .finally(() => setLoading(false));
   }, []);
 
