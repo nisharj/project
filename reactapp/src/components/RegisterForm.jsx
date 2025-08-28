@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function RegistrationForm() {
-  // const [showSuccess, setShowSuccess] = useState(false);
   const [step, setStep] = useState(1);
   const navigate = useNavigate();
   const [form, setForm] = useState({
