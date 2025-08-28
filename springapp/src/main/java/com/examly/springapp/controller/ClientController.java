@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 
-
 @RestController
 @CrossOrigin(origins = "http://localhost:8081")
 public class ClientController {
