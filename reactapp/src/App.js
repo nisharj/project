@@ -3,7 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/NavBar';
 import Home from './components/Home';
 import ApplyForm from './components/ApplyForm';
+import RegistrationForm from './components/RegisterForm';
 import DisplayHealthCoach from './components/DisplayHealthCoach';
+import DisplayClients from './components/DisplayClients';
 import Footer from './components/Footer';
 
 function App() {
@@ -14,7 +16,9 @@ function App() {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/apply" element={<ApplyForm />} />
+            <Route path="/register" element={<RegistrationForm />} />
             <Route path="/getAllCoaches" element={<DisplayHealthCoach />} />
+            <Route path="/getAllClients" element={<DisplayClients/>} />
         </Routes>
         <Footer />
       </div>

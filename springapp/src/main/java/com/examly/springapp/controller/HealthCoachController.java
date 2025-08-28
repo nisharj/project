@@ -29,4 +29,5 @@ public class HealthCoachController {
     public List<HealthCoach> getAllCoaches() {
         return coachService.getAllCoaches();
     }
+    
 }

@@ -14,6 +14,9 @@ export default function NavBar() {
           <li className="nav-item">
             <Link className="nav-link text-white" to="/getAllCoaches">Health Coach Details</Link>
           </li>
+          <li>
+            <Link className='nav-link text-white' to="/getAllClients">Clients</Link>
+          </li>
         </ul>
       </div>
     </nav>
