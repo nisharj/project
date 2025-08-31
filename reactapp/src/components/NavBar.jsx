@@ -17,6 +17,9 @@ export default function NavBar() {
           <li>
             <Link className='nav-link text-white' to="/getAllClients">Clients</Link>
           </li>
+          <li>
+            <Link className='nav-link text-white' to="/notifications">Requests</Link>
+          </li>
         </ul>
       </div>
     </nav>

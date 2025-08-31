@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Navbar from './NavBar';
 
 export default function DisplayHealthCoach() {
   const [coaches, setCoaches] = useState([]);
@@ -16,7 +17,8 @@ export default function DisplayHealthCoach() {
   }, []);
 
   return (
-    <div className="mt-4">
+    <div className="">
+      <Navbar />
      
       <h2 className="text-center text-primary mb-4">
         Submitted Health Coach Applications

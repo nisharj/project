@@ -31,5 +31,14 @@ public class ClientController {
         return clientService.getAllClients();
     }
 
-    
+    @DeleteMapping("/deleteClient/{id}")
+    public String deleteClient(@PathVariable Long id) {
+        boolean deleted = clientService.deleteClient(id);
+        if (deleted) {
+            return "Client with ID " + id + " deleted successfully.";
+        } else {
+            return "Client with ID " + id + " not found.";
+        }
+    }
+
 }

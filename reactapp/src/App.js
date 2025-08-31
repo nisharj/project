@@ -7,12 +7,14 @@ import RegistrationForm from './components/RegisterForm';
 import DisplayHealthCoach from './components/DisplayHealthCoach';
 import DisplayClients from './components/DisplayClients';
 import Footer from './components/Footer';
+// import NavbarForm from './components/NavbarForm';
+// import RequestForm from './components/RequestForm';
 
 function App() {
   return (
     <Router>
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/apply" element={<ApplyForm />} />
