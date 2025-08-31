@@ -20,7 +20,7 @@ export default function DisplayHealthCoach() {
     <div className="">
       <Navbar />
      
-      <h2 className="text-center text-primary mb-4">
+      <h2 className="text-center text-primary mb-4 mt-4">
         Submitted Health Coach Applications
       </h2>
 

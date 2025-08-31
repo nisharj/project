@@ -1,19 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NavBar from './NavBar';
 
 export default function Home() {
   return (
-    <div className="text-center d-flex flex-column justify-content-center align-items-center " style={{ minHeight: '80vh'}}>
-      <h2 className="fw-bold mb-3" style={{ color: '#2c3e50' }}>
-        Welcome to the Health Coach Application
-      </h2>
-      <p className="lead mb-4" style={{ color: '#555' }}>
-        Join our community of skilled health coaches and help individuals improve their health and wellness!
-      </p>
-      <div className="text-center d-flex gap-3 junstify-content-center align-items-center">
-        <Link to="/apply" className="btn btn-success btn-lg px-4 py-2">Become a Health Coach</Link>
-        <Link to="/register" className="btn btn-success btn-lg px-4 py-2">Become a Member</Link>
+    <>
+      <NavBar />
+      <div className="text-center d-flex flex-column justify-content-center align-items-center " style={{ minHeight: '80vh'}}>
+        <h2 className="fw-bold mb-3" style={{ color: '#2c3e50' }}>
+          Welcome to the Health Coach Application
+        </h2>
+        <p className="lead mb-4" style={{ color: '#555' }}>
+          Join our community of skilled health coaches and help individuals improve their health and wellness!
+        </p>
+        <div className="text-center d-flex gap-3 junstify-content-center align-items-center">
+          <Link to="/apply" className="btn btn-success btn-lg px-4 py-2">Become a Health Coach</Link>
+          <Link to="/register" className="btn btn-success btn-lg px-4 py-2">Become a Member</Link>
+        </div>
       </div>
-    </div>
+    </>
   );
 }

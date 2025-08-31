@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from './NavBar';
 
 export default function ApplyForm() {
     const [form, setForm] = useState({ name: '', specialization: '', certification: '', experience: '', phoneNumber: '' });
@@ -52,62 +53,63 @@ export default function ApplyForm() {
     };
 
     return (
-  <>
-    <div className="container d-flex justify-content-center mt-5" style={{marginBottom:"50px", paddingBottom:"60px"}}>
-      <div className="card shadow-sm" style={{ maxWidth: '500px', width: '100%' }}>
-        <div className="card-body">
-          <h3 className="mb-4 text-center">Apply to Become a Health Coach</h3>
-          <form onSubmit={handleSubmit} noValidate>
-            <div className="mb-3">
-              <label htmlFor="name" className="form-label">Name:</label>
-              <input id="name" name="name" type="text" className={`form-control ${errors.name ? 'is-invalid' : ''}`} value={form.name} onChange={handleChange} />
-              {errors.name && <div className="invalid-feedback">{errors.name}</div>}
+      <>
+        <Navbar />
+        <div className="container d-flex justify-content-center mt-5" style={{marginBottom:"50px", paddingBottom:"60px"}}>
+          <div className="card shadow-sm" style={{ maxWidth: '500px', width: '100%' }}>
+            <div className="card-body">
+              <h3 className="mb-4 text-center">Apply to Become a Health Coach</h3>
+              <form onSubmit={handleSubmit} noValidate>
+                <div className="mb-3">
+                  <label htmlFor="name" className="form-label">Name:</label>
+                  <input id="name" name="name" type="text" className={`form-control ${errors.name ? 'is-invalid' : ''}`} value={form.name} onChange={handleChange} />
+                  {errors.name && <div className="invalid-feedback">{errors.name}</div>}
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="specialization" className="form-label">Specialization:</label>
+                  <input id="specialization" name="specialization" type="text" className={`form-control ${errors.specialization ? 'is-invalid' : ''}`} value={form.specialization} onChange={handleChange} />
+                  {errors.specialization && <div className="invalid-feedback">{errors.specialization}</div>}
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="certification" className="form-label">Certification:</label>
+                  <input id="certification" name="certification" type="text" className={`form-control ${errors.certification ? 'is-invalid' : ''}`} value={form.certification} onChange={handleChange} />
+                  {errors.certification && <div className="invalid-feedback">{errors.certification}</div>}
+                </div>
+                <div className="mb-3">
+                  <label htmlFor="experience" className="form-label">Experience (in years):</label>
+                  <input id="experience" name="experience" type="number" className={`form-control ${errors.experience ? 'is-invalid' : ''}`} value={form.experience} onChange={handleChange} />
+                  {errors.experience && <div className="invalid-feedback">{errors.experience}</div>}
+                </div>
+                
+                
+                <div className="mb-3">
+                  <label htmlFor="phoneNumber" className="form-label">Phone Number:</label>
+                  <input id="phoneNumber" name="phoneNumber" type="text" className={`form-control ${errors.phoneNumber ? 'is-invalid' : ''}`} value={form.phoneNumber} onChange={handleChange} />
+                  {errors.phoneNumber && <div className="invalid-feedback">{errors.phoneNumber}</div>}
+                </div>
+                <div className="d-flex justify-content-between">
+                  <button type="button" className="btn btn-secondary" onClick={() => window.history.back()} disabled={submitting}>Back</button>
+                  <button type="submit" className="btn btn-primary" disabled={submitting}>
+                    {submitting ? 'Submitting...' : 'Submit Application'}
+                  </button>
+                </div>
+              </form>
             </div>
-            <div className="mb-3">
-              <label htmlFor="specialization" className="form-label">Specialization:</label>
-              <input id="specialization" name="specialization" type="text" className={`form-control ${errors.specialization ? 'is-invalid' : ''}`} value={form.specialization} onChange={handleChange} />
-              {errors.specialization && <div className="invalid-feedback">{errors.specialization}</div>}
-            </div>
-            <div className="mb-3">
-              <label htmlFor="certification" className="form-label">Certification:</label>
-              <input id="certification" name="certification" type="text" className={`form-control ${errors.certification ? 'is-invalid' : ''}`} value={form.certification} onChange={handleChange} />
-              {errors.certification && <div className="invalid-feedback">{errors.certification}</div>}
-            </div>
-            <div className="mb-3">
-              <label htmlFor="experience" className="form-label">Experience (in years):</label>
-              <input id="experience" name="experience" type="number" className={`form-control ${errors.experience ? 'is-invalid' : ''}`} value={form.experience} onChange={handleChange} />
-              {errors.experience && <div className="invalid-feedback">{errors.experience}</div>}
-            </div>
-            
-            
-            <div className="mb-3">
-              <label htmlFor="phoneNumber" className="form-label">Phone Number:</label>
-              <input id="phoneNumber" name="phoneNumber" type="text" className={`form-control ${errors.phoneNumber ? 'is-invalid' : ''}`} value={form.phoneNumber} onChange={handleChange} />
-              {errors.phoneNumber && <div className="invalid-feedback">{errors.phoneNumber}</div>}
-            </div>
-            <div className="d-flex justify-content-between">
-              <button type="button" className="btn btn-secondary" onClick={() => window.history.back()} disabled={submitting}>Back</button>
-              <button type="submit" className="btn btn-primary" disabled={submitting}>
-                {submitting ? 'Submitting...' : 'Submit Application'}
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-
-    <div className="modal fade" id="successModal" tabIndex="-1" aria-hidden="true">
-      <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title">Success</h5>
-            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div className="modal-body">Application submitted successfully!</div>
         </div>
-      </div>
-    </div>
-  </>
+
+        <div className="modal fade" id="successModal" tabIndex="-1" aria-hidden="true">
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Success</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">Application submitted successfully!</div>
+            </div>
+          </div>
+        </div>
+      </>
 );
 
 }

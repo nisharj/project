@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ClientProfile from "./ClientProfile";
+import NavBar from "./NavBar";
 
 export default function DisplayClients() {
   const [clients, setClients] = useState([]);
@@ -39,8 +40,9 @@ export default function DisplayClients() {
   };
 
   return (
-    <div className="mt-4">
-      <h2 className="text-center text-primary mb-4">
+    <div>
+      <NavBar />
+      <h2 className="text-center text-primary mb-4 mt-4">
         Submitted Client Registrations
       </h2>
 
