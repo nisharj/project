@@ -29,5 +29,16 @@ public class HealthCoachController {
     public List<HealthCoach> getAllCoaches() {
         return coachService.getAllCoaches();
     }
+
+
+    @DeleteMapping("/deleteCoach/{id}")
+    public String deleteCoach(@PathVariable Long id) {
+        boolean deleted = coachService.deleteCoach(id);
+        if (deleted) {
+            return "Coach with ID " + id + " deleted successfully.";
+        } else {
+            return "Coach with ID " + id + " not found.";
+        }
+    }
     
 }

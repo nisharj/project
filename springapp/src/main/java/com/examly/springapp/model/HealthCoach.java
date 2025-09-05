@@ -1,6 +1,8 @@
 package com.examly.springapp.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -16,6 +18,13 @@ public class HealthCoach {
     private String certification;
     private int experience;
     private String phoneNumber;
+
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.PENDING;
+
+    public enum Status {
+        PENDING, ACCEPTED, REJECTED
+    }
 
     public HealthCoach() {}
 
@@ -38,4 +47,7 @@ public class HealthCoach {
     public void setExperience(int experience) { this.experience = experience; }
     public String getPhoneNumber() { return phoneNumber; }
     public void setPhoneNumber(String phoneNumber) { this.phoneNumber = phoneNumber; }
+
+    public Status getStatus() { return status; }
+    public void setStatus(Status status) { this.status = status; }
 }

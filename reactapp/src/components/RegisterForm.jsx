@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import Navbar from './NavBar';
+import { useNavigate } from "react-router-dom";
 
 export default function RegistrationForm() {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
@@ -103,7 +105,7 @@ export default function RegistrationForm() {
       });
 
       setTimeout(() => {
-        modal.hide();
+        modal.hide(); navigate('/getAllClients');
       }, 1000);
     } catch (err) {
       console.error(err);

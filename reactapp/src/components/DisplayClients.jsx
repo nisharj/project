@@ -6,7 +6,9 @@ export default function DisplayClients() {
   const [clients, setClients] = useState([]);
   const [loading, setLoading] = useState(true);
   const [userProfile, setUserProfile] = useState(null);
-  const [confirmDelete, setConfirmDelete] = useState(false)
+  const [confirmDelete, setConfirmDelete] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); 
+  const [filterGender, setFilterGender] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:8080/getAllClient")
@@ -23,28 +25,60 @@ export default function DisplayClients() {
   }, []);
 
   const handleDelete = (id) => {
-      fetch(`http://localhost:8080/deleteClient/${id}`, {
-        method: "DELETE",
+    fetch(`http://localhost:8080/deleteClient/${id}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (res.ok) {
+          setClients((prevClients) => prevClients.filter((c) => c.id !== id));
+        } else {
+          alert("Failed to delete client.");
+        }
       })
-        .then((res) => {
-          if (res.ok) {
-            setClients((prevClients) => prevClients.filter((c) => c.id !== id));
-          } else {
-            alert("Failed to delete client.");
-          }
-        })
-        .catch((err) => {
-          console.error("Error deleting client:", err);
-          alert("An error occurred while deleting.");
-        });
+      .catch((err) => {
+        console.error("Error deleting client:", err);
+        alert("An error occurred while deleting.");
+      });
   };
 
+  const filteredClients = clients.filter((c) => {
+    const matchesSearch =
+      c.fullName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      c.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      c.phone.toLowerCase().includes(searchQuery.toLowerCase())
+
+    const matchesGender = filterGender ? c.gender === filterGender : true;
+
+    return matchesSearch && matchesGender;
+  });
+
   return (
-    <div>
+    <div style={{ minHeight:'90vh', paddingBottom:'110px', background: "linear-gradient(to right, #d4fc79, #96e6a1)"}}>
       <NavBar />
-      <h2 className="text-center text-primary mb-4 mt-4">
+      <h2 className="text-center text-primary mb-4 mt-4" >
         Submitted Client Registrations
       </h2>
+
+      <div className="container mb-3 d-flex justify-content-between">
+        <input
+          type="text"
+          placeholder="Search by name, email, phone, or location..."
+          className="form-control w-50"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+
+        <select
+          className="form-select w-25 ms-2"
+          value={filterGender}
+          onChange={(e) => setFilterGender(e.target.value)}
+        >
+          <option value="">All Genders</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
 
       {loading ? (
         <div className="text-center">Loading...</div>
@@ -65,7 +99,7 @@ export default function DisplayClients() {
                 </tr>
               </thead>
               <tbody>
-                {clients.map((c, i) => (
+                {filteredClients.map((c, i) => (
                   <tr key={i}>
                     <td>{c.fullName}</td>
                     <td>{c.email}</td>
@@ -74,12 +108,18 @@ export default function DisplayClients() {
                     <td>{c.location}</td>
                     <td>{c.goals}</td>
                     <td>
-                      <button className="btn btn-link text-decoration-none mx-3 text-primary" onClick={() => setUserProfile(c)}>
+                      <button
+                        className="btn btn-link text-decoration-none mx-3 text-primary"
+                        onClick={() => setUserProfile(c)}
+                      >
                         View
                       </button>
                     </td>
-                    <td>
-                      <button className="btn btn-danger btn-sm mx-5 px-3" onClick={() => setConfirmDelete(c)}>
+                    <td className='text-center'>
+                      <button
+                        className="btn btn-danger btn-sm mx-5 px-3"
+                        onClick={() => setConfirmDelete(c)}
+                      >
                         delete
                       </button>
                     </td>
@@ -89,7 +129,7 @@ export default function DisplayClients() {
             </table>
           </div>
 
-          {clients.length === 0 && (
+          {filteredClients.length === 0 && (
             <div className="alert alert-info text-center">
               No client registrations yet.
             </div>
@@ -151,7 +191,10 @@ export default function DisplayClients() {
                 ></button>
               </div>
               <div className="modal-body text-center">
-                <p>Are you sure you want to delete <b>{confirmDelete.fullName}</b>?</p>
+                <p>
+                  Are you sure you want to delete{" "}
+                  <b>{confirmDelete.fullName}</b>?
+                </p>
               </div>
               <div className="modal-footer justify-content-center">
                 <button

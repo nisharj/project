@@ -20,6 +20,17 @@ export default function NavBar() {
           <li>
             <Link className='nav-link text-white' to="/notifications">Requests</Link>
           </li>
+          <li className="nav-item">
+            <button
+              className="btn btn-outline-light ms-3"
+              onClick={() => {
+                localStorage.removeItem("role");
+                window.location.href = "/"; 
+              }}
+            >
+              Logout
+            </button>
+          </li>
         </ul>
       </div>
     </nav>

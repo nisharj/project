@@ -15,6 +15,14 @@ public class HealthCoachService {
         this.coachRepo = coachRepo;
     }
 
+    public HealthCoach  addCoachRequest(HealthCoach coach){
+        if(coach.getExperience() < 0){
+            throw new InvalidExperienceException("Experience connot be negative");
+        }
+        coach.setStatus((HealthCoach.Status.PENDING));
+        return coachRepo.save(coach);
+    }
+
     public HealthCoach addCoach(HealthCoach coach) {
         if (coach.getExperience() < 0) {
             throw new InvalidExperienceException("Experience cannot be negative.");
@@ -24,5 +32,29 @@ public class HealthCoachService {
 
     public List<HealthCoach> getAllCoaches() {
         return coachRepo.findAll();
+    }
+
+     public List<HealthCoach> getPendingCoaches() {
+        return coachRepo.findByStatus(HealthCoach.Status.PENDING);
+    }
+
+    public HealthCoach acceptCoach(Long id) {
+        HealthCoach coach = coachRepo.findById(id).orElseThrow(() -> new RuntimeException("Coach not found"));
+        coach.setStatus(HealthCoach.Status.ACCEPTED);
+        return coachRepo.save(coach);
+    }
+
+    public HealthCoach rejectCoach(Long id) {
+        HealthCoach coach = coachRepo.findById(id).orElseThrow(() -> new RuntimeException("Coach not found"));
+        coach.setStatus(HealthCoach.Status.REJECTED);
+        return coachRepo.save(coach);
+    }
+
+    public boolean deleteCoach(Long id) {
+        if (coachRepo.existsById(id)) {
+            coachRepo.deleteById(id);
+            return true;
+        }
+        return false;
     }
 }

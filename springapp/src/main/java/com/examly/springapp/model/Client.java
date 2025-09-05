@@ -10,8 +10,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
-
 @Entity
 @Table(name = "clients")
 public class Client {
@@ -19,7 +17,6 @@ public class Client {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Basic Personal Information
     private String fullName;
     private String email;
     private String phone;
@@ -27,7 +24,6 @@ public class Client {
     private String gender;
     private String location;
 
-    // Health & Lifestyle Information
     private String height;
     private String weight;
     private String fitnessLevel;
@@ -36,14 +32,12 @@ public class Client {
     private String sleep;
     private String habits;
 
-    // Goals & Preferences
     private String goals;
     private String coachingStyle;
     private String workoutPreferences;
     private String dietaryPreferences;
     private String timeAvailability;
 
-    // Getters & Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -100,4 +94,5 @@ public class Client {
 
     public String getTimeAvailability() { return timeAvailability; }
     public void setTimeAvailability(String timeAvailability) { this.timeAvailability = timeAvailability; }
+
 }

@@ -1,8 +1,11 @@
+com\examly\springapp\security\JwtUtil.class
 com\examly\springapp\SpringappApplication.class
+com\examly\springapp\repository\UserRepository.class
 com\examly\springapp\repository\HealthCoachRepo.class
 com\examly\springapp\configuration\CorsConfiguration.class
 com\examly\springapp\controller\HealthCoachController.class
 com\examly\springapp\configuration\CorsConfiguration$1.class
+com\examly\springapp\controller\AuthController.class
 com\examly\springapp\model\Client.class
 com\examly\springapp\service\HealthCoachService.class
 com\examly\springapp\service\ClientService.class
@@ -10,3 +13,4 @@ com\examly\springapp\controller\ClientController.class
 com\examly\springapp\repository\ClientRepository.class
 com\examly\springapp\model\HealthCoach.class
 com\examly\springapp\exception\InvalidExperienceException.class
+com\examly\springapp\model\User.class

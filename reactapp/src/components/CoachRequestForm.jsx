@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Navbar from './NavbarForm';
 
-export default function ApplyForm() {
+export default function CoachRequestForm() {
     const [form, setForm] = useState({ name: '', specialization: '', certification: '', experience: '', phoneNumber: '' });
     const [errors, setErrors] = useState({});
     const [submitting, setSubmitting] = useState(false);
@@ -26,18 +26,21 @@ export default function ApplyForm() {
         if (!validate()) return;
         try {
             setSubmitting(true);
-            const res = await fetch('http://localhost:8080/addCoach', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: form.name.trim(),
-                    specialization: form.specialization.trim(),
-                    certification: form.certification.trim(),
-                    experience: Number(form.experience),
-                    phoneNumber: form.phoneNumber.trim()
-                })
+            const res = await fetch("http://localhost:8080/applications/applyCoach", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                name: form.name.trim(),
+                specialization: form.specialization.trim(),
+                certification: form.certification.trim(),
+                experience: Number(form.experience),
+                phoneNumber: form.phoneNumber.trim(),
+                status: "PENDING"
+              })
             });
+
             if (!res.ok) throw new Error(await res.text() || 'Failed to submit');
+            
             const modal = new window.bootstrap.Modal(document.getElementById('successModal'));
             modal.show();
             setForm({ name: '', specialization: '', certification: '', experience: '', phoneNumber: '' });
@@ -52,6 +55,7 @@ export default function ApplyForm() {
 
     return (
       <>
+      <div style={{ minHeight:'90vh', paddingBottom:'100px', background: "linear-gradient(to right, #d4fc79, #96e6a1)"}}>
         <Navbar />
         <div className="container d-flex justify-content-center mt-5" style={{marginBottom:"50px", paddingBottom:"60px"}}>
           <div className="card shadow-sm" style={{ maxWidth: '500px', width: '100%' }}>
@@ -78,8 +82,6 @@ export default function ApplyForm() {
                   <input id="experience" name="experience" type="number" className={`form-control ${errors.experience ? 'is-invalid' : ''}`} value={form.experience} onChange={handleChange} />
                   {errors.experience && <div className="invalid-feedback">{errors.experience}</div>}
                 </div>
-                
-                
                 <div className="mb-3">
                   <label htmlFor="phoneNumber" className="form-label">Phone Number:</label>
                   <input id="phoneNumber" name="phoneNumber" type="text" className={`form-control ${errors.phoneNumber ? 'is-invalid' : ''}`} value={form.phoneNumber} onChange={handleChange} />
@@ -106,7 +108,7 @@ export default function ApplyForm() {
             </div>
           </div>
         </div>
+      </div>
       </>
-);
-
+    );
 }
