@@ -58,7 +58,7 @@ export default function ApplyForm() {
 
     return (
       <>
-        <div style={{ minHeight:'90vh', paddingBottom:'100px', background: "linear-gradient(to right, #d4fc79, #96e6a1)"}}>
+        <div style={{ minHeight:'100vh', paddingBottom:'100px', background: "linear-gradient(to right, #d4fc79, #96e6a1)"}}>
           {role && <Navbar />}
           {!role && <Navbar1 />}
           <div className="container d-flex justify-content-center mt-5" style={{marginBottom:"50px", paddingBottom:"60px", }}>

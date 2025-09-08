@@ -4,7 +4,6 @@ import NavBar from "./NavbarForm";
 export default function RequestForm() {
   const [step, setStep] = useState(1);
   const [errors, setErrors] = useState({});
-  const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     fullName: "",
     email: "",
@@ -77,10 +76,9 @@ export default function RequestForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateStep()) return;
-    setSubmitting(true);
 
     try {
-      const res = await fetch("http://localhost:8080/addClient", {
+      const res = await fetch("http://localhost:8080/client/add", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -111,7 +109,7 @@ export default function RequestForm() {
 
   return (
     <>
-      <div style={{ minHeight:'90vh', paddingBottom:'100px', background: "linear-gradient(to right, #d4fc79, #96e6a1)"}}>
+      <div style={{ minHeight:'100vh', paddingBottom:'100px', background: "linear-gradient(to right, #d4fc79, #96e6a1)"}}>
         <NavBar />
         <div className="container mt-5" >
           <div

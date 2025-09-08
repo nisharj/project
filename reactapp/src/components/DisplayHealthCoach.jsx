@@ -55,7 +55,7 @@ export default function DisplayHealthCoach() {
 
 
   return (
-    <div style={{ minHeight:'90vh', paddingBottom:'100px', background: "linear-gradient(to right, #d4fc79, #96e6a1)"}}>
+    <div style={{ minHeight:'100vh', paddingBottom:'100px', background: "linear-gradient(to right, #d4fc79, #96e6a1)"}}>
       {role === "ADMIN" && <Navbar />}
       {role!=='ADMIN' && <Navbar1 />}
      

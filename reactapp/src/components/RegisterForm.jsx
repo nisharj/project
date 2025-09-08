@@ -115,13 +115,14 @@ export default function RegistrationForm() {
 
   return (
     <>
+    <div style={{ minHeight:'100vh', paddingBottom:'100px', background: "linear-gradient(to right, #d4fc79, #96e6a1)"}}>
       <Navbar />
       <div className="container mt-5" style={{ marginBottom: "100px" }}>
         <div
           className="card shadow-sm p-4"
           style={{ maxWidth: "600px", margin: "auto" }}
         >
-          <h3 className="text-center mb-4">Health Coach Registration</h3>
+          <h3 className="text-center mb-4">Registration</h3>
 
           <form onSubmit={handleSubmit}>
             {/* Step 1: */}
@@ -427,6 +428,7 @@ export default function RegistrationForm() {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </>
   );

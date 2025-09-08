@@ -8,8 +8,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "clients")
 public class Client {
@@ -37,6 +35,29 @@ public class Client {
     private String workoutPreferences;
     private String dietaryPreferences;
     private String timeAvailability;
+
+    public Client(){}
+
+    public Client(String fullName, String email, String dob, String gender, String location, String height, String weight, String fitnessLevel, String medicalConditions,
+    String allergies, String sleep, String habits, String goals, String coachingStyle, String workoutPreferences, String dietaryPreferences, String timeAvailability){
+        this.fullName = fullName;
+        this.email = email;
+        this.dob = dob;
+        this.gender = gender;
+        this.location = location;
+        this.height = height;
+        this.weight = weight;
+        this.fitnessLevel = fitnessLevel;
+        this.medicalConditions = medicalConditions;
+        this.allergies =allergies;
+        this.sleep =sleep;
+        this.habits = habits;
+        this.goals = goals;
+        this.coachingStyle = coachingStyle;
+        this.workoutPreferences = workoutPreferences;
+        this.dietaryPreferences = dietaryPreferences;
+        this.timeAvailability = timeAvailability;
+    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -94,5 +115,26 @@ public class Client {
 
     public String getTimeAvailability() { return timeAvailability; }
     public void setTimeAvailability(String timeAvailability) { this.timeAvailability = timeAvailability; }
+
+    public Client(PendingClientRequest req) {
+        this.fullName = req.getFullName();
+        this.email = req.getEmail();
+        this.phone = req.getPhone();
+        this.dob = req.getDob();
+        this.gender = req.getGender();
+        this.location = req.getLocation();
+        this.height = req.getHeight();
+        this.weight = req.getWeight();
+        this.fitnessLevel = req.getFitnessLevel();
+        this.medicalConditions = req.getMedicalConditions();
+        this.allergies = req.getAllergies();
+        this.sleep = req.getSleep();
+        this.habits = req.getHabits();
+        this.goals = req.getGoals();
+        this.coachingStyle = req.getCoachingStyle();
+        this.workoutPreferences = req.getWorkoutPreferences();
+        this.dietaryPreferences = req.getDietaryPreferences();
+        this.timeAvailability = req.getTimeAvailability();
+    }
 
 }

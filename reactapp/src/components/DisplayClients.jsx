@@ -53,7 +53,7 @@ export default function DisplayClients() {
   });
 
   return (
-    <div style={{ minHeight:'90vh', paddingBottom:'110px', background: "linear-gradient(to right, #d4fc79, #96e6a1)"}}>
+    <div style={{ minHeight:'100vh', paddingBottom:'110px', background: "linear-gradient(to right, #d4fc79, #96e6a1)"}}>
       <NavBar />
       <h2 className="text-center text-primary mb-4 mt-4" >
         Submitted Client Registrations

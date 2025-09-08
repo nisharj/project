@@ -5,34 +5,34 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.examly.springapp.model.HealthCoach;
-import com.examly.springapp.model.PendingRequests;
+import com.examly.springapp.model.PendingCoachRequests;
 import com.examly.springapp.repository.HealthCoachRepo;
-import com.examly.springapp.repository.PendingRepo;
+import com.examly.springapp.repository.PendingCoachRepo;
 
 @Service
 public class ApplicationService {
 
-    private final PendingRepo pendingRepo;
+    private final PendingCoachRepo pendingRepo;
     private final HealthCoachRepo coachRepo;
 
-    public ApplicationService(PendingRepo pendingRepo, HealthCoachRepo coachRepo) {
+    public ApplicationService(PendingCoachRepo pendingRepo, HealthCoachRepo coachRepo) {
         this.pendingRepo = pendingRepo;
         this.coachRepo = coachRepo;
     }
 
     // User applies → goes into pending_coach
-    public PendingRequests applyCoach(PendingRequests coach) {
+    public PendingCoachRequests applyCoach(PendingCoachRequests coach) {
         return pendingRepo.save(coach);
     }
 
     // Admin views all pending
-    public List<PendingRequests> getPendingCoaches() {
+    public List<PendingCoachRequests> getPendingCoaches() {
         return pendingRepo.findAll();
     }
 
     // Admin accepts → move to health_coach + remove from pending
     public HealthCoach acceptCoach(Long id) {
-        PendingRequests pending = pendingRepo.findById(id)
+        PendingCoachRequests pending = pendingRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Coach not found"));
 
         HealthCoach coach = new HealthCoach();
