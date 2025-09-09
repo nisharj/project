@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from './NavBar';
-import Navbar1 from './NavBar1';
+import Navbar1 from './Navbar1';
 
 export default function DisplayHealthCoach() {
   const role = localStorage.getItem("role");

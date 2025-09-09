@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Navbar from './NavBar';
-import Navbar1 from './NavBar1';
+import Navbar1 from './Navbar1';
 
 export default function Home() {
   const token = localStorage.getItem("token");
@@ -11,7 +11,6 @@ export default function Home() {
 
   return (
     <>
-      {/* Show different navbar depending on role */}
       {isLoggedIn && role === "ADMIN" && <Navbar />}
       {isLoggedIn && role !== "ADMIN" && <Navbar1 />}
 
@@ -32,7 +31,7 @@ export default function Home() {
         </p>
 
         <div className="text-center d-flex gap-3 justify-content-center align-items-center">
-          {/* Not logged in → show login/register */}
+          
           {!isLoggedIn && (
             <>
               <Link to="/login" className="btn btn-success btn-lg px-4 py-2">
@@ -44,7 +43,6 @@ export default function Home() {
             </>
           )}
 
-          {/* Logged in as Admin */}
           {isLoggedIn && role === "ADMIN" && (
             <>
               <Link to="/apply" className="btn btn-success btn-lg px-4 py-2">
@@ -56,7 +54,6 @@ export default function Home() {
             </>
           )}
 
-          {/* Logged in as Client/Coach */}
           {isLoggedIn && role !== "ADMIN" && (
             <>
               <Link

@@ -4,14 +4,12 @@ export default function ClientProfile({ client }) {
 
   return (
     <div className="p-3">
-      {/* Header */}
       <div className="mb-3 border-bottom pb-2">
         <h4 className="mb-1">{client.fullName}</h4>
         <small className="text-muted">{client.email}</small>
       </div>
 
       <div className="row">
-        {/* Left Column - Personal Info */}
         <div className="col-md-6">
           <h6 className="text-primary">Personal Info</h6>
           <p><strong>Phone:</strong> {client.phone}</p>
@@ -20,7 +18,6 @@ export default function ClientProfile({ client }) {
           <p><strong>Location:</strong> {client.location}</p>
         </div>
 
-        {/* Right Column - Health & Fitness Info */}
         <div className="col-md-6">
           <h6 className="text-primary">Fitness Details</h6>
           <p><strong>Height:</strong> {client.height} cm</p>
@@ -32,7 +29,6 @@ export default function ClientProfile({ client }) {
 
       <hr />
 
-      {/* More Details */}
       <h6 className="text-primary">Lifestyle & Preferences</h6>
       <p><strong>Medical Conditions:</strong> {client.medicalConditions}</p>
       <p><strong>Allergies:</strong> {client.allergies || "None"}</p>

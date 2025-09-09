@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from './NavBar';
-import Navbar1 from './NavBar1';
+import Navbar1 from './Navbar1';
 
 export default function ApplyForm() {
   const role = localStorage.getItem("role");
@@ -46,7 +46,6 @@ export default function ApplyForm() {
             const modal = new window.bootstrap.Modal(document.getElementById('successModal'));
             modal.show();
             setForm({ name: '', specialization: '', certification: '', experience: '', phoneNumber: '' });
-            // eslint-disable-next-line no-lone-blocks
             setTimeout(() => { modal.hide(); navigate('/getAllCoaches'); }, 1000);
         } catch (err) {
             console.error(err);

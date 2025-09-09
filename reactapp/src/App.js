@@ -17,28 +17,35 @@ function App() {
     <Router>
       <div>
         <Routes>
-          {/* Protected Route (only ADMIN can view clients) */}
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/apply" element={<ApplyForm />} />
+          <Route path="/register" element={<RegisterForm />} />
+
           <Route
             path="/getAllClients"
             element={
               <PrivateRoute roles={["ADMIN"]}>
                 <DisplayClients />
               </PrivateRoute>
-            }
-          />
+            }/>
 
-          {/* Public Routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/apply" element={<ApplyForm />} />
-          <Route path="/register" element={<RegisterForm />} />
-          <Route path="/getAllCoaches" element={<DisplayHealthCoach />} />
-          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/getAllCoaches" element={ 
+            <PrivateRoute roles={["ADMIN"]}>
+              <DisplayHealthCoach />
+            </PrivateRoute>
+          } />
+
+          <Route path="/notifications" element={
+            <PrivateRoute roles={["ADMIN"]}>
+              <Notifications />
+            </PrivateRoute>
+          } />
+
           <Route path="/clientRequestForm" element={<ClientRequestForm />} />
           <Route path="/coachRequestForm" element={<CoachRequestForm />} />
         </Routes>
 
-        {/* Global Footer */}
         <Footer />
       </div>
     </Router>

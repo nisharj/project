@@ -5,8 +5,9 @@ export default function Notification() {
   const [coaches, setCoaches] = useState([]);
   const [clients, setClients] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [selectedApp, setSelectedApp] = useState(null); // store clicked app
-  const [selectedType, setSelectedType] = useState(""); // coach or client
+  const [selectedApp, setSelectedApp] = useState(null);
+  const [selectedType, setSelectedType] = useState("");
+  const [statusMessage, setStatusMessage] = useState("");
 
   const fetchCoaches = async () => {
     try {
@@ -51,7 +52,11 @@ export default function Notification() {
       const res = await fetch(url, { method: "PUT" });
       if (!res.ok) throw new Error("Failed to update application");
 
-      alert(`${type} application ${action}ed successfully`);
+      setStatusMessage(`Application has been ${action}ed`);
+      const modal = new window.bootstrap.Modal(document.getElementById("statusModal"));
+      modal.show();
+
+      // Refresh the data
       type === "coach" ? fetchCoaches() : fetchClients();
     } catch (err) {
       console.error(err);
@@ -62,9 +67,7 @@ export default function Notification() {
   const handleDetails = (app, type) => {
     setSelectedApp(app);
     setSelectedType(type);
-    const modal = new window.bootstrap.Modal(
-      document.getElementById("detailsModal")
-    );
+    const modal = new window.bootstrap.Modal(document.getElementById("detailsModal"));
     modal.show();
   };
 
@@ -147,7 +150,7 @@ export default function Notification() {
             <span className="badge bg-primary">{clients.length}</span>
           </h4>
           {clients.length === 0 ? (
-            <div className="alert alert-success">No pending client applications</div>
+            <div className="alert alert-success">No pending client applications 🎉</div>
           ) : (
             <div className="row">
               {clients.map((app) => (
@@ -193,7 +196,7 @@ export default function Notification() {
         </div>
       </div>
 
-      {/* Bootstrap Modal */}
+      {/* Details Modal */}
       <div
         className="modal fade"
         id="detailsModal"
@@ -236,6 +239,35 @@ export default function Notification() {
               ) : (
                 <p>No details available</p>
               )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Status Update Modal */}
+      <div
+        className="modal fade"
+        id="statusModal"
+        tabIndex="-1"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered">
+          <div className="modal-content text-center p-4">
+            <div className="modal-body">
+              <div className="mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="green" className="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM6.97 11.03a.75.75 0 0 0 1.07 0l3.992-3.992a.75.75 0 1 0-1.06-1.06L7.5 9.439 5.354 7.293a.75.75 0 1 0-1.06 1.06l2.676 2.676z"/>
+                </svg>
+              </div>
+              <h5 className="mb-3">Status Updated</h5>
+              <p>{statusMessage}</p>
+              <button
+                type="button"
+                className="btn btn-success"
+                data-bs-dismiss="modal"
+              >
+                OK
+              </button>
             </div>
           </div>
         </div>

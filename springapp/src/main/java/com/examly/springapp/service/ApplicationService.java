@@ -20,17 +20,14 @@ public class ApplicationService {
         this.coachRepo = coachRepo;
     }
 
-    // User applies → goes into pending_coach
     public PendingCoachRequests applyCoach(PendingCoachRequests coach) {
         return pendingRepo.save(coach);
     }
 
-    // Admin views all pending
     public List<PendingCoachRequests> getPendingCoaches() {
         return pendingRepo.findAll();
     }
 
-    // Admin accepts → move to health_coach + remove from pending
     public HealthCoach acceptCoach(Long id) {
         PendingCoachRequests pending = pendingRepo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Coach not found"));
@@ -48,7 +45,6 @@ public class ApplicationService {
         return saved;
     }
 
-    // Admin rejects → delete from pending table
     public void rejectCoach(Long id) {
         pendingRepo.deleteById(id);
     }
